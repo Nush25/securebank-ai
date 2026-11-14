@@ -1,47 +1,90 @@
+
 # SecureBank AI
 
-**A local-first, RAG-powered banking assistant built with Generative AI.**
+### A Local-First RAG-Powered Banking Assistant
 
-SecureBank AI is an intelligent banking assistant that answers questions using a knowledge base of banking documents. It uses Retrieval-Augmented Generation (RAG) to retrieve relevant information before generating responses, helping keep answers grounded in the available sources.
+SecureBank AI is an intelligent banking assistant that uses **Retrieval-Augmented Generation (RAG)** to answer questions based on a knowledge base of banking documents.
 
-The application combines a Streamlit interface, FastAPI backend, local LLM inference with Ollama, FAISS vector search, and Supabase authentication.
+Instead of relying only on an LLM's pretrained knowledge, the application retrieves relevant information from banking documents and uses that context to generate grounded responses.
+
+The project combines a Streamlit frontend, FastAPI backend, local LLM inference using Ollama, FAISS vector search, and Supabase authentication to create a secure, interactive AI application.
+
+---
 
 ## Features
 
-- **RAG-based question answering:** Retrieves relevant information from banking documents before generating answers.
-- **Local LLM inference:** Uses Ollama to run language models locally.
-- **Semantic document search:** Uses embeddings and FAISS for similarity-based retrieval.
-- **Source-aware responses:** Displays supporting sources and relevant excerpts.
-- **User authentication:** Supports registration, login, email verification, and logout through Supabase Auth.
-- **Conversation history:** Stores chat conversations locally using SQLite.
-- **Modern interface:** Streamlit-based chat interface with light and dark themes.
-- **REST API:** FastAPI backend with an interactive API documentation page.
+- **RAG-Based Question Answering:** Retrieves relevant information from banking documents before generating responses.
+- **Local LLM Inference:** Runs language models locally using Ollama.
+- **Semantic Document Search:** Uses embeddings and FAISS for similarity-based document retrieval.
+- **Source-Aware Responses:** Displays supporting sources and relevant document excerpts.
+- **User Authentication:** Supports registration, login, email verification, and logout through Supabase Auth.
+- **Conversation History:** Maintains user-specific chat conversations using SQLite.
+- **Modern Chat Interface:** Streamlit-based interface with light and dark themes.
+- **REST API:** FastAPI backend with interactive API documentation.
+- **User Isolation:** Authenticated conversations are scoped to the corresponding user.
 
-## Tech Stack
+---
+
+## Technology Stack
 
 | Category | Technologies |
 |---|---|
-| Programming Language | Python |
+| Programming Language | Python 3.11 |
 | Frontend | Streamlit |
 | Backend | FastAPI |
 | LLM Runtime | Ollama |
 | Language Model | Qwen |
-| Embeddings | Nomic Embed Text |
-| Vector Database | FAISS |
+| Embedding Model | Nomic Embed Text |
+| Vector Store | FAISS |
 | Authentication | Supabase Auth |
 | Local Database | SQLite |
-| API Communication | REST, HTTP, JSON |
+| API Communication | REST API, HTTP, JSON |
+| Version Control | Git, GitHub |
 
-## Architecture
+---
 
-1. **User Interface:** Users interact with the assistant through the Streamlit chat interface.
-2. **Authentication:** Supabase Auth handles user registration, login, and session authentication.
-3. **API Layer:** Streamlit communicates with the FastAPI backend.
-4. **Document Processing:** Banking documents are loaded, split into chunks, and converted into embeddings.
-5. **Retrieval:** FAISS searches for relevant document chunks based on the user's question.
-6. **Generation:** The retrieved context is passed to the local Ollama language model.
-7. **Response:** The assistant generates an answer and presents supporting source information.
-8. **History:** Conversations are stored locally using SQLite.
+## System Architecture
+
+SecureBank AI follows a Retrieval-Augmented Generation architecture.
+
+```mermaid
+flowchart TD
+    A["User"] --> B["Streamlit Frontend"]
+
+    B --> C["Supabase Authentication"]
+    B --> D["FastAPI Backend"]
+
+    D --> E["Authentication Validation"]
+    E --> F["RAG Pipeline"]
+
+    G["Banking Documents"] --> H["Document Loader"]
+    H --> I["Text Chunker"]
+    I --> J["Nomic Embeddings"]
+    J --> K[("FAISS Vector Store")]
+
+    F --> L["Query Embedding"]
+    L --> K
+    K --> M["Relevant Document Chunks"]
+    M --> N["Qwen LLM via Ollama"]
+    N --> O["Grounded Answer with Sources"]
+    O --> B
+
+    B --> P[("SQLite Chat History")]
+```
+
+### RAG Workflow
+
+1. **Document Ingestion:** Banking documents are loaded into the document processing pipeline.
+2. **Text Chunking:** Documents are divided into smaller, manageable text chunks.
+3. **Embedding Generation:** Nomic Embed Text converts document chunks into vector embeddings.
+4. **Vector Storage:** FAISS stores the embeddings for efficient similarity-based retrieval.
+5. **Query Processing:** The user's question is converted into an embedding.
+6. **Context Retrieval:** FAISS retrieves relevant document chunks based on semantic similarity.
+7. **Response Generation:** The Qwen language model running through Ollama generates an answer using the retrieved context.
+8. **Source Presentation:** The generated response is displayed with supporting source information.
+9. **Conversation Storage:** Chat history is maintained locally using SQLite.
+
+---
 
 ## Project Structure
 
@@ -51,9 +94,25 @@ SecureBankingAssistant/
 ├── backend/
 │   ├── app/
 │   │   ├── core/
+│   │   │   ├── security.py
+│   │   │   └── supabase_client.py
+│   │   │
 │   │   ├── routes/
+│   │   │   ├── auth.py
+│   │   │   └── chat.py
+│   │   │
 │   │   ├── schemas/
+│   │   │
 │   │   └── services/
+│   │       ├── auth_service.py
+│   │       ├── document_loader.py
+│   │       ├── embedding_service.py
+│   │       ├── llm_service.py
+│   │       ├── rag_pipeline.py
+│   │       ├── rag_service.py
+│   │       ├── text_chunker.py
+│   │       └── vector_store.py
+│   │
 │   └── main.py
 │
 ├── frontend/
@@ -66,42 +125,72 @@ SecureBankingAssistant/
 │       └── banking_policy.txt
 │
 ├── tests/
+│   ├── test_rag.py
+│   ├── test_rag_evaluation.py
+│   └── test_rag_service.py
 │
-├── requirements.txt
+├── .env.example
 ├── .gitignore
+├── requirements.txt
 └── README.md
 ```
 
+---
+
 ## Getting Started
 
-### 1. Clone the repository
+Follow these steps to run SecureBank AI locally.
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+- Python 3.11
+- Git
+- Ollama
+- A Supabase account and project
+
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/Nush25/securebank-ai.git
+```
+
+Navigate into the project directory:
+
+```bash
 cd securebank-ai
 ```
 
-### 2. Create a virtual environment
+### 2. Create a Virtual Environment
 
 ```bash
 python -m venv venv
 ```
 
-Activate it on Windows PowerShell:
+Activate the environment on Windows PowerShell:
 
 ```powershell
 .\venv\Scripts\Activate.ps1
 ```
 
-### 3. Install dependencies
+### 3. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Configure environment variables
+### 4. Configure Environment Variables
 
-Create a `.env` file in the project root:
+Create a `.env` file in the project root.
+
+Copy the example configuration:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Add your Supabase project credentials to `.env`:
 
 ```env
 SUPABASE_URL=your_supabase_project_url
@@ -109,16 +198,19 @@ SUPABASE_PUBLISHABLE_KEY=your_supabase_publishable_key
 APP_ENV=local
 ```
 
-Replace the placeholders with your own Supabase project values.
+Replace the placeholder values with your own Supabase project details.
 
-**Never commit your actual `.env` file or authentication secrets to GitHub.**
+**Important:** Never upload your actual `.env` file or authentication secrets to GitHub.
 
-### 5. Set up Ollama
+### 5. Set Up Ollama
 
 Install Ollama and download the required models:
 
 ```bash
 ollama pull qwen3:4b
+```
+
+```bash
 ollama pull nomic-embed-text
 ```
 
@@ -126,7 +218,7 @@ Make sure Ollama is running before starting the application.
 
 The model configuration in the application should match the model names installed locally.
 
-### 6. Run the backend
+### 6. Run the FastAPI Backend
 
 Open a terminal in the project directory:
 
@@ -134,7 +226,7 @@ Open a terminal in the project directory:
 python -m uvicorn backend.main:app --reload
 ```
 
-Backend API:
+The backend will be available at:
 
 ```text
 http://127.0.0.1:8000
@@ -146,28 +238,72 @@ Interactive API documentation:
 http://127.0.0.1:8000/docs
 ```
 
-### 7. Run the frontend
+### 7. Run the Streamlit Frontend
 
-Open another terminal, activate the virtual environment, and run:
+Open another terminal and activate the virtual environment.
+
+Run:
 
 ```bash
 python -m streamlit run frontend/app.py
 ```
 
-The Streamlit application will open in your browser.
+The application will open in your browser.
+
+---
+
+## API Endpoints
+
+The backend exposes REST API endpoints for authentication and chat functionality.
+
+| Endpoint | Method | Purpose |
+|---|---|---|
+| `/health` | GET | Check backend health |
+| `/auth/register` | POST | Register a new user |
+| `/auth/login` | POST | Authenticate a user |
+| `/auth/logout` | POST | Log out a user |
+| `/chat` | POST | Send a question to the AI assistant |
+
+For the complete API schema and request details, visit:
+
+`http://127.0.0.1:8000/docs`
+
+---
 
 ## Security Considerations
 
-- Authentication is handled through Supabase Auth.
-- Protected backend endpoints require authentication.
+- Supabase Auth handles user authentication.
+- Protected backend endpoints validate authentication tokens.
 - Conversation access is scoped to the authenticated user.
 - Local chat history and generated data are excluded from version control.
-- Ollama provides local model inference.
-- Do not enter real banking credentials, PINs, OTPs, or sensitive financial information.
+- Ollama provides local language model inference.
+- Environment variables are used for application configuration.
+- Never enter real banking passwords, PINs, OTPs, or confidential financial information.
+
+---
+
+## Future Improvements
+
+Potential enhancements include:
+
+- Improved RAG retrieval and reranking.
+- Expanded banking document knowledge base.
+- More comprehensive automated evaluation.
+- Conversation export functionality.
+- Improved response evaluation and hallucination detection.
+- Deployment using a hosted inference service.
+
+---
 
 ## Disclaimer
 
-SecureBank AI is an educational and portfolio project. It uses sample banking documents and is not connected to real banking systems. Its responses should not be treated as official financial advice or banking instructions.
+SecureBank AI is an educational and portfolio project. It uses sample banking documents and is not connected to real banking systems.
+
+The generated responses should not be treated as official banking instructions or financial advice.
+
+Do not use this application with real customer information or sensitive financial credentials.
+
+---
 
 ## Author
 
@@ -177,4 +313,4 @@ SecureBank AI is an educational and portfolio project. It uses sample banking do
 
 ---
 
-*Built as a practical exploration of Retrieval-Augmented Generation, Large Language Models, API development, and AI application engineering.*
+*Built to explore Retrieval-Augmented Generation, Large Language Models, semantic search, API development, and AI application engineering.*
