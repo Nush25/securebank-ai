@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+streamlit
+ollama
+pypdf
+faiss-cpu
+python-multipart
+pydantic
+python-dotenv

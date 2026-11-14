@@ -1,0 +1,29 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+*.egg-info/
+
+# Local databases and settings
+data/chat_history.db
+data/app_settings.json
+data/chat_history.json
+
+# Generated vector index
+data/faiss_index.bin
+data/chunks_metadata.json
+
+# IDE and operating system
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

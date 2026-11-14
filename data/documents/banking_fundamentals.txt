@@ -1,0 +1,106 @@
+
+BANKING FUNDAMENTALS
+
+1. TYPES OF BANK ACCOUNTS
+
+Savings Account:
+A savings account is used by individuals to deposit money, withdraw funds and earn interest according to the bank's terms.
+
+Current Account:
+A current account is generally designed for businesses and frequent transactions. Its features and charges depend on the bank.
+
+Fixed Deposit (FD):
+A fixed deposit allows customers to deposit a lump sum for a selected period at an agreed interest rate.
+
+Recurring Deposit (RD):
+A recurring deposit allows customers to deposit a fixed amount regularly for a selected period.
+
+2. LOANS AND CREDIT
+
+Personal Loan:
+A personal loan is generally an unsecured loan used for personal expenses. Approval depends on the lender's eligibility criteria.
+
+Home Loan:
+A home loan is used to purchase, construct or renovate a residential property, subject to the lender's conditions.
+
+Education Loan:
+An education loan helps finance eligible educational expenses. Eligibility, coverage and repayment terms depend on the lender.
+
+EMI:
+EMI stands for Equated Monthly Instalment. It is a fixed periodic payment towards repaying a loan, consisting of principal and interest.
+
+Credit Score:
+A credit score is a numerical indicator of a borrower's credit history. Lenders may use it when evaluating loan applications.
+
+3. DIGITAL BANKING
+
+Internet Banking:
+Internet banking allows customers to access banking services through a bank's website.
+
+Mobile Banking:
+Mobile banking allows customers to access banking services through a bank's mobile application.
+
+UPI:
+Unified Payments Interface (UPI) enables users to make instant bank-to-bank payments through supported applications.
+
+NEFT:
+National Electronic Funds Transfer (NEFT) is an electronic system for transferring money between bank accounts.
+
+RTGS:
+Real Time Gross Settlement (RTGS) is an electronic funds transfer system that processes transactions individually in real time.
+
+IMPS:
+Immediate Payment Service (IMPS) enables instant electronic fund transfers.
+
+4. BANK CARDS
+
+Debit Card:
+A debit card allows customers to make payments or withdraw cash using funds available in their linked bank account.
+
+Credit Card:
+A credit card allows eligible customers to borrow funds up to an assigned credit limit and repay according to the card's terms.
+
+ATM:
+An Automated Teller Machine (ATM) allows customers to perform supported banking transactions, including cash withdrawals.
+
+5. KYC AND CUSTOMER VERIFICATION
+
+KYC stands for Know Your Customer.
+
+Banks use KYC procedures to verify customer identity and address.
+
+Depending on applicable requirements, banks may request identity documents, address proof, photographs and other information.
+
+Customers should provide documents only through official and verified banking channels.
+
+6. BANKING SECURITY
+
+Customers should:
+- Keep passwords, PINs and OTPs confidential.
+- Never share sensitive banking credentials with unknown people.
+- Avoid clicking suspicious banking links.
+- Use official banking websites and applications.
+- Report suspicious or unauthorized transactions promptly.
+- Verify payment details before confirming transactions.
+
+7. BANKING TRANSACTIONS
+
+NEFT, RTGS and IMPS are different electronic money transfer systems.
+
+UPI supports instant payments through participating banks and applications.
+
+Transaction status, processing times, applicable charges and limits depend on the payment system, bank and applicable rules.
+
+8. CUSTOMER COMPLAINTS
+
+Customers should first report banking issues through their bank's official customer support or grievance redressal channels.
+
+Customers should retain transaction references, complaint numbers and relevant communication.
+
+If an issue remains unresolved, customers may use the applicable regulatory grievance redressal mechanism.
+
+9. IMPORTANT INFORMATION
+
+Bank-specific interest rates, charges, transaction limits, loan amounts, eligibility requirements and processing times must be verified using the relevant bank's current official documents.
+
+This document provides general banking education and does not establish the policies of any particular bank.
