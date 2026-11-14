@@ -1,4 +1,3 @@
-
 # SecureBank AI
 
 ### A Local-First RAG-Powered Banking Assistant
@@ -7,7 +6,7 @@ SecureBank AI is an intelligent banking assistant that uses **Retrieval-Augmente
 
 Instead of relying only on an LLM's pretrained knowledge, the application retrieves relevant information from banking documents and uses that context to generate grounded responses.
 
-The project combines a Streamlit frontend, FastAPI backend, local LLM inference using Ollama, FAISS vector search, and Supabase authentication to create a secure, interactive AI application.
+The project combines a Streamlit frontend, FastAPI backend, local LLM inference using Ollama, FAISS vector search, and Supabase authentication to create an interactive AI application.
 
 ---
 
@@ -22,6 +21,34 @@ The project combines a Streamlit frontend, FastAPI backend, local LLM inference 
 - **Modern Chat Interface:** Streamlit-based interface with light and dark themes.
 - **REST API:** FastAPI backend with interactive API documentation.
 - **User Isolation:** Authenticated conversations are scoped to the corresponding user.
+
+---
+
+## Application Screenshots
+
+### Login and Authentication
+
+The authentication interface supports login, account creation, and email verification.
+
+![SecureBank AI Login](screenshots/login.png)
+
+### Home Dashboard
+
+The home screen introduces the banking assistant and provides suggested questions to help users get started.
+
+![SecureBank AI Home](screenshots/home.png)
+
+### AI Chat and RAG Responses
+
+Users can ask banking-related questions and receive generated answers with expandable supporting document references.
+
+![SecureBank AI Chat Response](screenshots/chat-response.png)
+
+### Dark Theme
+
+The application also provides a dark theme for a consistent alternative interface.
+
+![SecureBank AI Dark Theme](screenshots/dark-theme.png)
 
 ---
 
@@ -124,6 +151,12 @@ SecureBankingAssistant/
 │       ├── banking_fundamentals.txt
 │       └── banking_policy.txt
 │
+├── screenshots/
+│   ├── login.png
+│   ├── home.png
+│   ├── chat-response.png
+│   └── dark-theme.png
+│
 ├── tests/
 │   ├── test_rag.py
 │   ├── test_rag_evaluation.py
@@ -216,7 +249,7 @@ ollama pull nomic-embed-text
 
 Make sure Ollama is running before starting the application.
 
-The model configuration in the application should match the model names installed locally.
+The model configuration in the application should match the model names installed locally. Check `backend/app/services/llm_service.py` for the configured language model identifier.
 
 ### 6. Run the FastAPI Backend
 
@@ -228,15 +261,11 @@ python -m uvicorn backend.main:app --reload
 
 The backend will be available at:
 
-```text
-http://127.0.0.1:8000
-```
+`http://127.0.0.1:8000`
 
 Interactive API documentation:
 
-```text
-http://127.0.0.1:8000/docs
-```
+`http://127.0.0.1:8000/docs`
 
 ### 7. Run the Streamlit Frontend
 
@@ -310,6 +339,7 @@ Do not use this application with real customer information or sensitive financia
 **Anushka Patil**
 
 - GitHub: [@Nush25](https://github.com/Nush25)
+- Project Repository: [SecureBank AI](https://github.com/Nush25/securebank-ai)
 
 ---
 
