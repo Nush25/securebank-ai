@@ -1,3 +1,4 @@
+
 fastapi
 uvicorn[standard]
 streamlit
@@ -7,3 +8,7 @@ faiss-cpu
 python-multipart
 pydantic
 python-dotenv
+requests
+supabase
+numpy
+pytest
